@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     #myapps
     'Course',
+    'User',
     #swagger
     'drf_yasg',
     #seeder

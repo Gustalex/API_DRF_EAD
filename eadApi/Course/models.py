@@ -1,4 +1,7 @@
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from User.models import ContentCreator
 
 class CourseCategory(models.Model):
     name = models.CharField(max_length=50)
@@ -15,6 +18,7 @@ class Course(models.Model):
     description = models.TextField()
     duration = models.IntegerField()
     category = models.ForeignKey(CourseCategory, on_delete=models.SET_NULL, null=True, blank=True, default=None)
+    creator = models.ForeignKey(ContentCreator, on_delete=models.CASCADE, related_name='course_creator')
     
     class Meta:
         verbose_name = 'Course'
@@ -22,3 +26,8 @@ class Course(models.Model):
     
     def __str__(self):
         return self.title
+
+@receiver(post_save, sender=Course)
+def update_content_creator_courses(sender, instance, created, **kwargs):
+    if created:
+        instance.creator.courses.add(instance)
