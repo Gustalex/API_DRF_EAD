@@ -11,6 +11,12 @@ class Enrollment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
+    class Meta:
+        db_table = 'enrollment'
+        verbose_name = 'Enrollment'
+        verbose_name_plural = 'Enrollments'
+        unique_together = ('student', 'course')
+    
     def __str__(self):
         return self.student.first_name + ' ' + self.student.last_name + ' - ' + self.student.cpf + ' - ' + self.course.name
 

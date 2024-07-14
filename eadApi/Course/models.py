@@ -7,6 +7,7 @@ class CourseCategory(models.Model):
     name = models.CharField(max_length=50)
     
     class Meta:
+        db_table = 'course_category'
         verbose_name = 'Course Category'
         verbose_name_plural = 'Course Categories'
     
@@ -21,6 +22,7 @@ class Course(models.Model):
     creator = models.ForeignKey(ContentCreator, on_delete=models.CASCADE, related_name='course_creator')
     
     class Meta:
+        db_table = 'course'
         verbose_name = 'Course'
         verbose_name_plural = 'Courses'
     
