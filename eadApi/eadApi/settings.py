@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'Course',
     'User',
     'Enrollment',
+    'Evaluation',
     #swagger
     'drf_yasg',
     #seeder
